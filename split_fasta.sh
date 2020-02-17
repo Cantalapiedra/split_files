@@ -1,6 +1,6 @@
 ## CPCantalapiedra
 
-infasta = "$1";
+infasta="$1";
 #infile="$1";
 num_files="$2";
 outdir="$3";
@@ -11,7 +11,7 @@ prefix="$4";
 
 infile="$infasta".tsv;
 
-./fasta_to_tsv.sh "$infasta" > "$infile"
+fasta_to_tsv.sh "$infasta" > "$infile"
 
 # 2. ###############
 # create split files
@@ -57,19 +57,11 @@ for spfile in $(ls "$outdir"/"$prefix"*); do
 done | 
 awk '{print $1}' | sort | uniq -c | awk '{print $2"\t"$1}' 1>&2
 
-exit 0;
-
-for sppath in $(ls splits/*); do
-        #sppath=splits/"$spfile";
-        ./create_clusters_proteins.prepare_file.sh "$sppath" "$DB_NAME" \
-        "$CL_TABLE_NAME" "$PR_TABLE_NAME" &
-done
-
 rm "$infile";
 
 # 3. #########################
 # convert split files to fasta
 
-./tsv_to_fasta.sh "$outdir" "$prefix"
+tsv_to_fasta.sh "$outdir" "$prefix"
 
 ## END
