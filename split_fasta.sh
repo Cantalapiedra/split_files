@@ -6,6 +6,11 @@ num_files="$2";
 outdir="$3";
 prefix="$4";
 
+printf "$infasta\n" 1>&2;
+printf "$num_files\n" 1>&2;
+printf "$outdir\n" 1>&2;
+printf "$prefix\n" 1>&2;
+
 # 1. #######################
 # convert fasta files to tsv
 
